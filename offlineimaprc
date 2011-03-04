@@ -8,6 +8,7 @@ ui = Noninteractive.Basic
 [Account RedHat]
 localrepository = Local
 remoterepository = Remote
+postsynchook = email-tagger
 
 [Repository Local]
 type = Maildir
