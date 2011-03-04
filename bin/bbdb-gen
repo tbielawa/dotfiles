@@ -1,0 +1,38 @@
+#!/usr/bin/ruby
+require 'date'
+require 'erb'
+require 'rubygems'
+require 'net/ldap'
+
+template = ERB.new <<-EOS
+;; -*-coding: utf-8-emacs;-*-
+;;; file-version: 6
+<% results.each do |entry| %>["<%= entry.first %>" "<%= entry.last %>" nil nil nil nil ("<%= entry.mail %>") ((creation-date . "<%= today %>") (timestamp . "<%= today %>")) nil]
+<% end %>
+EOS
+
+class Result
+  attr_accessor :first, :last, :mail
+  def initialize(raw)
+    @mail = raw.mail.first
+    tokens = raw.cn.first.split
+    @last = tokens.last
+    tokens.delete_at -1
+    @first = tokens.join ' '
+  end
+end
+
+ldap = Net::LDAP.new
+ldap.host = 'ldap.corp.redhat.com'
+filter = Net::LDAP::Filter.eq 'mail', '*@redhat.com'
+
+res = ldap.search :base => 'ou=users,dc=redhat,dc=com', 
+            :filter => filter
+
+today = Date.today.to_s
+results = []
+res.each do |r| 
+  results << Result.new(r)
+end
+
+puts template.result(binding)

@@ -1,0 +1,10 @@
+# -*- mode: shell-script -*-
+alias ew='emacs -rv -T Emacs --no-splash'
+alias ssu='sudo su -'
+alias grep='grep --color=auto'
+alias lsearch='ldapsearch -xLLL'
+alias ls='ls --color=auto'
+alias ll='ls -l'
+alias ltr='ls -ltr'
+alias k='kinit -f'
+alias dserver='./manage.py runserver 0.0.0.0:8000'

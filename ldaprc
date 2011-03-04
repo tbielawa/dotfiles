@@ -1,0 +1,5 @@
+BINDDN uid=tbielawa,ou=People,dc=csee,dc=wvu,dc=edu
+BASE   dc=csee,dc=wvu,dc=edu
+URI    ldap://ldap.csee.wvu.edu
+TLS_REQCERT	never
+

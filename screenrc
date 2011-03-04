@@ -1,0 +1,36 @@
+# -*- mode: conf -*-
+
+# "Hardstatus bar" configuration
+# Looks like this:
+#      fridge [          0- zsh  (1*zsh)  2 zsh          ] 05:42:54 
+# Basically stolen from this fine website:
+#   http://www.pastacode.de/extending-gnu-screen-adding-a-taskbar/en/
+hardstatus alwayslastline
+hardstatus string "%{= kG} %{G}%H %{g}[%= %{=kw}%-Lw%{r}(%{W}%n*%f%t%{r})%{g}%+Lw%= %{g}]%{W} %0C:%s %{g}"
+
+# Configure for dynamic window titles.
+# Requires PROMPT_COMMAND mods in your ~/.zshrc
+# The "$ " must be the last characters in your $PS1
+shelltitle '$ |zsh'
+
+# Define your $PS1 like this in ~/.zshrc:
+# case "$TERM" in
+#          screen)
+#             PS1='\[\ek\e\\\]...rest of your prompt....'
+# 	    ;;
+# 	 *)
+# 	    PS1='your normal prompt'
+# 	    ;;
+# esac
+
+#When your ssh connection dies, screen is autodetached
+autodetach on
+
+#Nice 256 term colors
+attrcolor b ".I"
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+
+# Each new window isn't counted as a login session
+deflogin off
+startup_message off
+defscrollback 10000

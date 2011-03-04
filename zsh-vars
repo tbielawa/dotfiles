@@ -1,0 +1,11 @@
+# -*- mode: shell-script -*-
+HISTFILE=~/.histfile
+HISTSIZE=10000
+SAVEHIST=1000
+bindkey -e
+export EDITOR=emacs
+export EMAIL=tbielawa@redhat.com
+# . or ~ ~/git
+CDPATH=.:~:~/rhat/puppet-mods
+PATH=~/opt/Android/tools:$PATH
+

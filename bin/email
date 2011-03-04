@@ -1,0 +1,32 @@
+#!/bin/bash
+
+offlineimap
+notmuch new
+
+# The IT Crowd
+notmuch tag -inbox +it-eng-list to:"it-eng-list"
+notmuch tag -inbox +it-all to:"it-all"
+notmuch tag -inbox +it-pc-list to:"it-pc-list"
+notmuch tag -inbox +helpdesk from:"Helpdesk"
+
+# Monitoring
+notmuch tag -inbox +nagios +nagios-PROD from:"nagios" and subject:".prod."
+notmuch tag -inbox +nagios +nagos-STAGE from:"nagios" and subject:".stage."
+notmuch tag -inbox +nagios +nagios-QA   from:"nagios" and subject:".qa."
+notmuch tag -inbox +nagios +nagios-ETC  from:"nagios" and not tag:nagios
+
+# Other automated mailings
+notmuch tag -inbox -unread +pkgs-signed from:"keymaster"
+notmuch tag -inbox +gomez from:"alerts@gomez.com"
+notmuch tag -inbox -unread +cron-fail from:"Cron"
+
+# Company Notices/Discussions/Alerts
+notmuch tag -inbox +memo-list to:"memo-list"
+notmuch tag -inbox +announce-list from:"announce-list"
+notmuch tag -inbox +outages to:"outage-list"
+notmuch tag -inbox +facilities from:"facilities"
+
+# Misc. jibber jabber
+notmuch tag -inbox +friday-list to:"friday-list"
+notmuch tag -inbox +rdu-list to:"rdu-list"
+notmuch tag -inbox +android to:"android-users"

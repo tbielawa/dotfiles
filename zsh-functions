@@ -1,0 +1,4 @@
+# -*- mode: shell-script -*-
+function yins() {
+    sudo yum -y install "$@"
+}

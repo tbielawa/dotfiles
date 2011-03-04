@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+require "yaml"
+ARGV.each do |file|
+  begin
+    YAML::load_file(file)
+  rescue ArgumentError => e
+    puts "#{file}: #{e}"
+  end
+end

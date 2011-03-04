@@ -1,0 +1,24 @@
+# Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
+# suit to get started fast.
+
+[general]
+accounts = RedHat
+ui = Noninteractive.Basic
+
+[Account RedHat]
+localrepository = Local
+remoterepository = Remote
+
+[Repository Local]
+type = Maildir
+localfolders = ~/email
+sep = /
+
+[Repository Remote]
+type = IMAP
+ssl = yes
+remoteport = 993
+remotepassfile = ~/.redhat-email.pass
+remotehost = $MAILSERVER$
+remoteuser = tbielawa
+subscribedonly = no
