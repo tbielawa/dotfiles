@@ -27,6 +27,7 @@
  '(scroll-step 1)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
+ '(vc-follow-symlinks t)
  '(yaml-indent-offset 4))
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
