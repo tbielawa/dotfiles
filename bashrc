@@ -44,16 +44,6 @@ esac
 # Handy Alias definitions.
 if [ -f ~/.bash_lcsee_aliases ]; then
     . ~/.bash_lcsee_aliases
-fi
-alias bpkg='dpkg-buildpackage -us -uc -rfakeroot'
-alias ew='emacs -nw --no-splash'
-alias ac='apt-cache'
-
-# enable color support of ls and also add handy aliases
-if [ "$TERM" != "dumb" ]; then
-    eval "`dircolors -b`"
-    alias ls='ls --color=auto'
-fi
 
 # I'm a developer, these are my creds
 export DEBEMAIL=tbielawa@csee.wvu.edu
@@ -61,8 +51,6 @@ export DEVEDITOR=emacs
 export EDITOR=emacs
 export DEBFULLNAME="Timothy Bielawa (Shaggy)"
 export EMAIL=tbielawa@redhat.com
-export PATH=~/LCSEE/bin:~/bin/:${PATH}
-export CLASSPATH=/etc/xml/resolver:$CLASSPATH
 
 #@source /etc/bash_completion.d/git
 . ~/.bash_functions
