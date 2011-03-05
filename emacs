@@ -1,4 +1,4 @@
-# -*- mode: emacs-lisp -*-
+;; -*- mode: emacs-lisp -*-
 (load-file "~/.emacs.d/modes.el")
 (load-file "~/.emacs.d/defuns.el")
 
