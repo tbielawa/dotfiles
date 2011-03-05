@@ -50,7 +50,8 @@ if ! zstyle -a ":completion:${curcontext}:hosts" hosts _hosts; then
       fi
     done
 
-    #trying to add manifest/nodes into the _hosts
+    # Take the file names in the nodes directory as input for ssh
+    # host completion
     manifests_dir="/home/tbielawa/rhat/puppet-mods/manifests/nodes"
     mhosts=($(cd $manifests_dir; ls -d *(/)))
     _cache_hosts+=($mhosts)
