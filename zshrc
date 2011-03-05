@@ -1,3 +1,4 @@
+# -*- mode: shell-script -*-
 ########################################################################
 # Imports
 for f in functions aliases vars; do

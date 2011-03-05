@@ -1,0 +1,42 @@
+# -*- mode: conf -*-
+# Emacs
+*~
+\#*
+\#*\#
+.elc
+auto-save-list
+
+# Python
+*.py[co]
+
+# Ignore tags created by etags and ctags
+TAGS
+tags
+
+# OS X
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Archives
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.tar.gz
+*.zip
+*.bzip
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Misc things that I'm sure will show up eventually
+*.orig
+*.tmp
+*.bak
+*.project

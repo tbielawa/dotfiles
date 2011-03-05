@@ -1,10 +1,4 @@
-# ~/.bash_profile: executed by bash(1) for login shells.
-# see /usr/share/doc/bash/examples/startup-files for examples.
-# the files are located in the bash-doc pac   e.
-
-# the default umask is set in /etc/login.defs
-#umask 022
-
+# -*- mode: shell-script -*-
 # Access a lot of public terminals? Lets make sure we don't get
 # carried away while we're hacking
 

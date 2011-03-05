@@ -1,4 +1,4 @@
-; -*- mode: emacs-lisp -*-
+# -*- mode: emacs-lisp -*-
 (load-file "~/.emacs.d/modes.el")
 (load-file "~/.emacs.d/defuns.el")
 
@@ -18,6 +18,8 @@
  '(initial-major-mode (quote text-mode))
  '(initial-scratch-message nil)
  '(menu-bar-mode nil)
+ '(notmuch-poll-script "/home/tbielawa/bin/email-sync")
+ '(notmuch-search-oldest-first nil)
  '(notmuch-show-all-tags-list t)
  '(nxml-slash-auto-complete-flag t)
  '(puppet-indent-level 4)

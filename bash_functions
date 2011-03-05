@@ -1,3 +1,5 @@
+# -*- mode: shell-script -*-
+
 # $1 = dir to create then move into
 cdmkdir() {
     mkdir -p $1

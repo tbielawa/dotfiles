@@ -28,6 +28,7 @@ autodetach on
 
 #Nice 256 term colors
 attrcolor b ".I"
+term xterm-256color
 termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 
 # Each new window isn't counted as a login session

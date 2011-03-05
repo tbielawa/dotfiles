@@ -1,0 +1,21 @@
+# -*- mode: conf -*-
+[user]
+	name = Tim Bielawa
+	email = tbielawa@redhat.com
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+[core]
+	editor = emacs --no-splash
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+	c = clone
+[push]
+	default = tracking
+[github]
+        token = $GITHUBTOKEN$
+        user = tbielawa

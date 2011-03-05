@@ -1,3 +1,4 @@
+;; -*- mode: emacs-lisp -*-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Add a new DocBook 5 compliant section
 (defun db-new-section (xml-id title)

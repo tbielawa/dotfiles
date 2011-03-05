@@ -1,2 +1,3 @@
+# -*- mode: conf -*-
 DEBSIGN_KEYID="0333AE37"
 DEBUILD_DPKG_BUILDPACKAGE_OPTS="-ICVS -I'.svn*' -I'.git*' -I'.bzr*'"

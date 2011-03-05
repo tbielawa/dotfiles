@@ -1,3 +1,5 @@
+# -*- mode: shell-script -*-
+
 [ -f  ~/.bash_aliases ] && . ~/.bash_aliases
 [ -z "$PS1" ] && return
 
