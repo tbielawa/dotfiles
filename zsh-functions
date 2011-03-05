@@ -2,3 +2,7 @@
 function yins() {
     sudo yum -y install "$@"
 }
+
+function cdmkdir() {
+    mkdir -p ${1} && cd ${1}
+}

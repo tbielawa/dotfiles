@@ -1,3 +1,5 @@
 # -*- mode: conf -*-
 DEBSIGN_KEYID="0333AE37"
+# Basically, ignore all version control systems if you're using debuld
+# or anything else from the Debian devscripts package
 DEBUILD_DPKG_BUILDPACKAGE_OPTS="-ICVS -I'.svn*' -I'.git*' -I'.bzr*'"

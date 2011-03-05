@@ -9,6 +9,7 @@ alias bpkg='dpkg-buildpackage -us -uc -rfakeroot'
 alias fclean='fakeroot debian/rules clean'
 alias ac='apt-cache'
 alias ashow='apt-cache show'
+alias ldebuild='debuild -S --lintian-opts -iIvv'
 
 # RPM/YUM packaging/maintenance
 alias ys='yum search'
