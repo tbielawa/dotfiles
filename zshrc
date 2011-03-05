@@ -58,7 +58,7 @@ preexec () {
 setopt nonomatch # Pass wildcard glob to commands when zsh can't do the match
                  # Really handy for scp'ing the contents of a directory
 autoload -Uz compinit
-compinit
+compinit -u
 zstyle ':completion:*' menu select=2 # Show menu selection when completion > 2 options
 # Remove forward slashes and periods from "word characters"
 WORDCHARS="${WORDCHARS:s#/#}"
