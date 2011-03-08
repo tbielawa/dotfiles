@@ -27,6 +27,7 @@ alias wget='wget --no-check-certificate'
 alias dserver='./manage.py runserver 0.0.0.0:8000'
 alias lsearch='ldapsearch -xLLL'
 alias gotemp='pushd `mktemp -d`'
+alias cleanup='find . -name "*~" -delete'
 
 # Command line prettyness/etc
 alias grep='grep --color=auto'
