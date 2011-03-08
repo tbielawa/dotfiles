@@ -8,7 +8,9 @@
   ;; If you edit it by hand, you could mess it up, so be careful.
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
- '(dired-recursive-copies (quote always))
+ '(backup-by-copying t)
+ '(backup-by-copying-when-linked t)
+ '(backup-directory-alist (quote (("\".\"" . "~/.emacs.d/auto-save-list"))))
  '(display-time-24hr-format t)
  '(display-time-day-and-date nil)
  '(display-time-mode t)
@@ -17,9 +19,8 @@
  '(inhibit-startup-screen t)
  '(initial-major-mode (quote text-mode))
  '(initial-scratch-message nil)
+ '(make-backup-files t)
  '(menu-bar-mode nil)
- '(notmuch-poll-script "/home/tbielawa/bin/email-sync")
- '(notmuch-search-oldest-first nil)
  '(notmuch-show-all-tags-list t)
  '(nxml-slash-auto-complete-flag t)
  '(puppet-indent-level 4)
@@ -27,7 +28,7 @@
  '(scroll-step 1)
  '(show-paren-mode t)
  '(tool-bar-mode nil)
- '(vc-follow-symlinks t)
+ '(version-control (quote never))
  '(yaml-indent-offset 4))
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)

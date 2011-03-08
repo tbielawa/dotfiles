@@ -1,8 +1,8 @@
 # -*- mode: shell-script -*-
 
 # Emacs is too hard to type
-alias ew='emacs -nw --no-splash'
-alias e='emacs -nw --no-splash'
+alias ew='emacs --no-splash'
+alias e='emacslient -c'
 
 # Debian packaging/maintenance
 alias bpkg='dpkg-buildpackage -us -uc -rfakeroot'
@@ -26,6 +26,7 @@ alias keys='ssh-add -l'
 alias wget='wget --no-check-certificate'
 alias dserver='./manage.py runserver 0.0.0.0:8000'
 alias lsearch='ldapsearch -xLLL'
+alias gotemp='pushd `mktemp -d`'
 
 # Command line prettyness/etc
 alias grep='grep --color=auto'
