@@ -1,0 +1,14 @@
+ #!/bin/zsh
+
+CLONEPATH=~/Projects/dotfiles
+exit;
+
+BACKUPS=`mktemp -d`
+pushd ~
+for f in ${CLONEPATH}/zsh*; do
+    cp .`basename ${f}` ${BACKUPS}/${f}
+    rm -fR .`basename ${f}`
+    ln -s $f .`basename ${f}`
+done
+echo "Backups in ${BACKUPS}"
+popd
