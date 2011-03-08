@@ -30,3 +30,7 @@ notmuch tag -inbox +facilities from:"facilities"
 notmuch tag -inbox +friday-list to:"friday-list"
 notmuch tag -inbox +rdu-list to:"rdu-list"
 notmuch tag -inbox +android to:"android-users"
+notmuch tag -inbox +me from:"tbielawa"
+
+# Now run one last post-sync hook:
+nagios-alerts

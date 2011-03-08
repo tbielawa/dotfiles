@@ -19,6 +19,7 @@
  '(inhibit-startup-screen t)
  '(initial-major-mode (quote text-mode))
  '(initial-scratch-message nil)
+ '(mail-host-address "deepfryer.rdu.redhat.com")
  '(make-backup-files t)
  '(menu-bar-mode nil)
  '(notmuch-show-all-tags-list t)

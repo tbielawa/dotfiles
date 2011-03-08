@@ -22,8 +22,9 @@ class Result
   end
 end
 
+require 'vars'
 ldap = Net::LDAP.new
-ldap.host = 'ldap.corp.redhat.com'
+ldap.host = Vars::CORPLDAP
 filter = Net::LDAP::Filter.eq 'mail', '*@redhat.com'
 
 res = ldap.search :base => 'ou=users,dc=redhat,dc=com', 

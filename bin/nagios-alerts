@@ -1,0 +1,48 @@
+#!/bin/bash
+
+alert() {
+    # 1 = Notification title
+    # 2 = Notification body
+    notify-send -i ~/Pictures/flames-icon.png "${1}" "${2}"
+}
+
+count_nagios_problems() {
+    notmuch search tag:nagios and tag:unread and subject:"PROBLEM" | wc -l
+}
+
+count_nagios_recoveries() {
+    notmuch search tag:nagios and tag:unread and subject:"RECOVERY" | wc -l
+}
+
+count_nagios_acks() {
+    notmuch search tag:nagios and tag:unread and subject:"ACKNOWLEDGEMENT" | wc -l
+}
+
+problems=`count_nagios_problems`
+recoveries=`count_nagios_recoveries`
+acks=`count_nagios_acks`
+
+if [ "${problems}" -gt "0" ]; then
+    if [ "${problems}" -eq "1" ]; then
+	alert "Nagios Problem" "There is 1 new problem notification"
+    elif [ "${problems}" -gt "1" ]; then
+	alert "Nagios Problems" "There are ${problems} new problem notifications"
+    fi
+fi
+
+if [ "${recoveries}" -gt "0" ]; then
+    if [ "${recoveries}" -eq "1" ]; then 
+	alert "Nagios Recovery" "There is 1 new recovery notification"
+    elif [ "${recoveries}" -gt "1" ]; then 
+	alert "Nagios Recoveries" "There are ${recoveries} new recovery notifications"
+    fi
+fi
+
+if [ "${acks}" -gt "0" ]; then
+    if [ "${acks}" -eq "1" ]; then 
+	alert "Nagios Acknowledgement" "There is 1 new acknowledgement notification"
+    elif [ "${acks}" -gt "1" ]; then 
+	alert "Nagios Acknowledgement" "There are ${acks} new acknowledgement notifications"
+    fi
+fi
+
