@@ -33,13 +33,17 @@
           '(lambda ()
              (define-key yaml-mode-map "\C-m" 'newline-and-indent)))
 
-;;; Lets get our email syncing in the background while running 'email'
-(require 'offlineimap)
-
-;;; Then we can think about the mail reader
-(require 'notmuch)
-;; Sign messages by default (http://notmuchmail.org/emacstips/#index11h2)
-(add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
+;;; Lets generalize for a moment. Keep host specific stuff out of the way
+(let
+    ((hostname (getenv "HOSTNAME")))
+  (if (string-equal hostname "deepfryer")
+      (progn
+	;;; Lets get our email syncing in the background while running 'email'
+	(require 'offlineimap)
+	;;; Then we can think about the mail reader
+	(require 'notmuch)
+	;; Sign messages by default (http://notmuchmail.org/emacstips/#index11h2)
+	(add-hook 'message-setup-hook 'mml-secure-sign-pgpmime))))
 
 ;;; Puppet mode for editing manifests
 (autoload 'puppet-mode "puppet-mode" "Major mode for editing puppet manifests")
