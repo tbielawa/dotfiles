@@ -57,5 +57,27 @@
 (global-set-key "\C-ct" 'word-wrap)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; We should avoid trying to launch OfflineIMAP multiple times.
+;; OfflineIMAP will quit on its own, but we'll get nasty error
+;; messages
+(defun offlineimap-runningp ()
+  "Tell us if the Offlineimap process is already running or not."
+  (interactive)
+  (let
+      ((imap-buffer (get-buffer "*OfflineIMAP*")))
+    (if (null imap-buffer)
+	nil
+      t)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Lets get some email going!
+(defun email()
+  "Notmuch mail client and the imap poller"
+  (interactive)
+  (if (null (offlineimap-runningp))
+      (offlineimap))
+  (notmuch))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Your amazing function here!
 

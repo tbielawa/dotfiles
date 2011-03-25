@@ -19,16 +19,20 @@
  '(inhibit-startup-screen t)
  '(initial-major-mode (quote text-mode))
  '(initial-scratch-message nil)
- '(mail-host-address "deepfryer.rdu.redhat.com")
+ '(mail-from-style (quote angles))
+ '(mail-user-agent (quote message-user-agent))
  '(make-backup-files t)
  '(menu-bar-mode nil)
+ '(notmuch-saved-searches (quote (("auto-spam" . "(tag:nagios or tag:gomez) and tag:unread") ("inbox" . "tag:inbox") ("unread" . "tag:unread"))))
  '(notmuch-show-all-tags-list t)
  '(nxml-slash-auto-complete-flag t)
  '(puppet-indent-level 4)
  '(scroll-bar-mode nil)
  '(scroll-step 1)
+ '(send-mail-function (quote smtpmail-send-it))
  '(show-paren-mode t)
  '(tool-bar-mode nil)
+ '(user-mail-address "tbielawa@redhat.com")
  '(vc-follow-symlinks t)
  '(version-control (quote never))
  '(yaml-indent-offset 4))
@@ -40,3 +44,4 @@
   ;; Your init file should contain only one such instance.
   ;; If there is more than one, they won't work right.
  )
+

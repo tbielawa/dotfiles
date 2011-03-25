@@ -9,3 +9,5 @@ export TERM=xterm-256color
 # . or ~ ~/git
 CDPATH=.:~:~/rhat/puppet-mods
 PATH=~/opt/Android/tools:$PATH
+export EMAIL="Tim Bielawa <tbielawa@redhat.com>"
+export MAIL="Tim Bielawa <tbielawa@redhat.com>"
