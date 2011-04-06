@@ -1,0 +1,35 @@
+#!/bin/bash
+function has-branch {
+    branch=$1
+    git branch --no-color | grep -q " ${branch}$"
+}
+
+if has-branch master; then
+    if has-branch stage; then
+        git co --quiet stage
+        git merge --quiet master
+    elif has-branch qa; then
+        git co --quiet qa
+        git merge --quiet master
+    elif has-branch dev; then
+        git co --quiet dev
+        git merge --quiet master
+    fi
+fi
+
+if has-branch stage; then
+    if has-branch qa; then
+        git co --quiet qa
+        git merge --quiet stage
+    elif has-branch dev; then
+        git co --quiet dev
+        git merge --quiet stage
+    fi
+fi
+
+if has-branch qa; then
+    if has-branch dev; then
+        git co --quiet dev
+        git merge --quiet qa
+    fi
+fi
