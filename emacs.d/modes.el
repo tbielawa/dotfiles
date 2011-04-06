@@ -10,6 +10,7 @@
             auto-mode-alist))
 
 ;;; Actual LDAP Mode - For things like editing LDIFs or schemas
+(require 'ldap-mode)
 (setq auto-mode-alist
       (cons '("\\.\\(schema\\|ldif\\|ldiff\\)\\'" . ldap-mode)
             auto-mode-alist))
@@ -43,7 +44,7 @@
 	;;; Then we can think about the mail reader
 	(require 'notmuch)
 	;; Sign messages by default (http://notmuchmail.org/emacstips/#index11h2)
-	;; (add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
+	(add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
 	;; Remedy tag hooks
 	(require 'remedy-tag-mode)
 	(global-set-key (kbd "<f8>") 'email))))

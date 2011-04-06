@@ -1,5 +1,5 @@
-#!/bin/bash
 
+# http://file.rdu.redhat.com/~tbielawa/flames-icon.png
 alert() {
     # 1 = Notification title
     # 2 = Notification body
