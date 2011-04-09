@@ -71,3 +71,11 @@
 ;; (setq erlang-root-dir "/usr/local/lib/erlang/")
 ;; (setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
 ;; (require 'erlang-start)
+
+(autoload 'doc-mode "doc-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.asciidoc$" . doc-mode))
+(add-hook 'doc-mode-hook
+          '(lambda ()
+             (turn-on-auto-fill)
+             (require 'asciidoc)))
+
