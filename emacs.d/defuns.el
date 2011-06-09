@@ -79,7 +79,7 @@
   (if (null (offlineimap-runningp))
       (offlineimap))
   (notmuch)
-  (color-theme-taming-mr-arneson))
+  (color-theme-deep-blue))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Add a new task to the docs

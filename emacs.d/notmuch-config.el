@@ -1,5 +1,6 @@
 (setq notmuch-saved-searches '(
                                ("inbox" . "tag:inbox and tag:unread")
+                               ("TODO" . "tag:TODO or tag:todo")
 			       ("Problems" . "(tag:outages or tag:gomez or tag:nagios) and tag:unread")
 			       ("Taboot" . "tag:taboot and tag:unread")
 			       ("FedoraDevel" . "tag:fedora-devel and tag:unread")
