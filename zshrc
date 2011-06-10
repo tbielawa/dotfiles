@@ -78,4 +78,4 @@ zstyle ':completion:*' menu select=2 # Show menu selection when completion > 2 o
 WORDCHARS="${WORDCHARS:s#/#}"
 WORDCHARS="${WORDCHARS:s#.#}"
 /usr/bin/setxkbmap -option "ctrl:nocaps"
-umask 017
+umask 012
