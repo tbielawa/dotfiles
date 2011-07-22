@@ -23,7 +23,7 @@ setopt prompt_subst # Allows variable substitution to take place in the prompt
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git cvs svn
 zstyle ':vcs_info:*:prompt:*' check-for-changes true
-zstyle ':vcs_info:*:prompt:*' unstagedstr "${PR_BRIGHT_YELLOW}*${PR_RESET}"
+zstyle ':vcs_info:*:prompt:*' unstagedstr "${PR_BRIGHT_YELLOW}⚡${PR_RESET}"
 zstyle ':vcs_info:*:prompt:*' stagedstr "${PR_BRIGHT_YELLOW}+${PR_RESET}"
 zstyle ':vcs_info:*:prompt:*' formats  " ${PR_BRIGHT_RED}(%b${PR_RESET}%c%u${PR_BRIGHT_RED})${PR_RESET}"              "%a"
 zstyle ':vcs_info:*:prompt:*' actionformats  " ${PR_BRIGHT_RED}(%b|%a)${PR_RESET}"              "%a"

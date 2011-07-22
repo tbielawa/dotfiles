@@ -79,7 +79,7 @@
   (if (null (offlineimap-runningp))
       (offlineimap))
   (notmuch)
-  (color-theme-deep-blue))
+  (color-theme-twilight))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Add a new task to the docs
@@ -87,6 +87,25 @@
   (interactive "sTask Name:")
   (insert-file "task")
   (replace-string "*name*" task-name))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Your amazing function here!
+(defun toggle-mail-buffers ()
+  "Toggle back and forth between notmuch and offlineimap"
+  (interactive)
+  (let ((cb (buffer-name))
+	(nm "*notmuch-hello*")
+	(oi "*OfflineIMAP*"))
+    (if (eq cb nm)
+	(progn
+	  (message "Switching to %s from %s" oi cb)
+	  (switch-to-buffer oi)))
+    (if (eq cb oi)
+	(progn
+	  (message "Switching to %s from %s" oi cb)
+	  (switch-to-buffer nm)))))
+
+(global-set-key "\M-O" 'toggle-mail-buffers)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Your amazing function here!
