@@ -22,7 +22,7 @@ class Result
   end
 end
 
-require 'vars'
+load 'vars.rb'
 ldap = Net::LDAP.new
 ldap.host = Vars::CORPLDAP
 filter = Net::LDAP::Filter.eq 'mail', '*@redhat.com'

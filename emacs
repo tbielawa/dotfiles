@@ -26,6 +26,7 @@
  '(notmuch-saved-searches (quote (("auto-spam" . "(tag:nagios or tag:gomez) and tag:unread") ("inbox" . "tag:inbox") ("unread" . "tag:unread"))))
  '(notmuch-show-all-tags-list t)
  '(nxml-slash-auto-complete-flag t)
+ '(puppet-include-indent 4)
  '(puppet-indent-level 4)
  '(scroll-bar-mode nil)
  '(scroll-step 1)

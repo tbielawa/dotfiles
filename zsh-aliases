@@ -1,8 +1,8 @@
 # -*- mode: shell-script -*-
 
 # Emacs is too hard to type
-alias ew='emacs --no-splash'
-alias e='emacslient -c'
+alias ew='emacs -nw'
+alias e='emacs'
 
 # Debian packaging/maintenance
 alias bpkg='dpkg-buildpackage -us -uc -rfakeroot'
@@ -33,3 +33,6 @@ alias cleanup='find . -name "*~" -delete'
 alias grep='grep --color=auto'
 alias ls='ls --color=auto'
 alias ltr='ls -ltr'
+
+# Admin maint.
+alias pfstat='sudo su -c "service postfix status"'

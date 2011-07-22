@@ -19,6 +19,7 @@ notmuch tag -inbox +nagios +nagios-ETC  from:"nagios" and not tag:nagios
 notmuch tag -inbox -unread +pkgs-signed from:"keymaster"
 notmuch tag -inbox +gomez from:"alerts@gomez.com"
 notmuch tag -inbox -unread +cron-fail from:"Cron"
+notmuch tag -unread subject:"F-15 Branched report"
 
 # Company Notices/Discussions/Alerts
 notmuch tag -inbox +memo-list to:"memo-list"

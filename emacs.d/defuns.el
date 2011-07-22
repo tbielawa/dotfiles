@@ -3,11 +3,12 @@
 ;; Add a new DocBook 5 compliant section
 (defun db-new-section (xml-id title)
   (interactive "sxml-id:\nsTitle:")
-  (let
-      ((nl))
-    (setq nl "
+  (save-excursion
+    (let
+	((nl))
+      (setq nl "
 ")
-    (insert "<section xml:id=\"" xml-id "\">" nl nl "  <title>" title "</title>" nl)))
+      (insert "<section xml:id=\"" xml-id "\">" nl nl "  <title>" title "</title>" nl nl "<para>" nl nl "</para>" nl nl "</section>" nl nl ))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Cycle through windows the other way with previous-window
@@ -74,9 +75,18 @@
 (defun email()
   "Notmuch mail client and the imap poller"
   (interactive)
+  (load-file "~/.emacs.d/notmuch-config.el")
   (if (null (offlineimap-runningp))
       (offlineimap))
-  (notmuch))
+  (notmuch)
+  (color-theme-taming-mr-arneson))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Add a new task to the docs
+(defun taboot-new-task (task-name)
+  (interactive "sTask Name:")
+  (insert-file "task")
+  (replace-string "*name*" task-name))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Your amazing function here!

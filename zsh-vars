@@ -1,13 +1,17 @@
-# -*- mode: shell-script -*-
-HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=1000
+ # -*- mode: shell-script -*-
 bindkey -e
+export HISTFILE=~/.histfile
+export HISTSIZE=10000
+export SAVEHIST=1000
 export EDITOR=emacs
 export EMAIL=tbielawa@redhat.com
 export TERM=xterm-256color
-# . or ~ ~/git
-CDPATH=.:~:~/rhat/puppet-mods
-PATH=~/opt/Android/tools:$PATH
+export CDPATH=.:~:~/rhat/puppet-mods
+export PATH=~/opt/Android/tools:$PATH
 export EMAIL="tbielawa@redhat.com"
 export MAIL="tbielawa@redhat.com"
+export NSS_DEFAULT_DB_TYPE="sql"
+export M2_HOME="/usr/bin/"
+export CVSROOT=":ext:cvs.devel.redhat.com:/cvs/web"
+export CVS_RSH="ssh"
+export PRINTER="two_test"

@@ -70,9 +70,12 @@ export GPG_TTY
 # Whatever else
 setopt nonomatch # Pass wildcard glob to commands when zsh can't do the match
                  # Really handy for scp'ing the contents of a directory
+setopt rmstarsilent
 autoload -Uz compinit
 compinit -u
 zstyle ':completion:*' menu select=2 # Show menu selection when completion > 2 options
 # Remove forward slashes and periods from "word characters"
 WORDCHARS="${WORDCHARS:s#/#}"
 WORDCHARS="${WORDCHARS:s#.#}"
+/usr/bin/setxkbmap -option "ctrl:nocaps"
+umask 017
