@@ -105,7 +105,7 @@
 	  (message "Switching to %s from %s" oi cb)
 	  (switch-to-buffer nm)))))
 
-(global-set-key "\M-O" 'toggle-mail-buffers)
+;; (global-set-key "\M-O" 'toggle-mail-buffers)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Your amazing function here!

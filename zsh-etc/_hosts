@@ -1,6 +1,5 @@
+#compdef ssh ftp rwho rup xping traceroute host aaaa zone mx ns soa txt
 # -*- mode: shell-script -*-
-#compdef ftp rwho rup xping traceroute host aaaa zone mx ns soa txt
-
 # avoid calling variable "hosts", it's an obvious candidate for use in
 #  zstyle -e '*' hosts 'reply=($hosts)'
 local expl _hosts tmp useip
@@ -53,7 +52,7 @@ if ! zstyle -a ":completion:${curcontext}:hosts" hosts _hosts; then
     # Take the file names in the nodes directory as input for ssh
     # host completion
     manifests_dir="/home/tbielawa/rhat/puppet-mods/manifests/nodes"
-    mhosts=($(cd $manifests_dir; ls -d *(/)))
+    mhosts=($(cd $manifests_dir; ls -d1 *.com))
     _cache_hosts+=($mhosts)
   fi
   _hosts=( "$_cache_hosts[@]" )

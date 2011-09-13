@@ -1,7 +1,7 @@
 # -*- mode: shell-script -*-
 ########################################################################
 # Imports
-for f in functions aliases vars; do
+for f in functions aliases vars keybindings; do
     source ~/.zsh-${f}
 done
 

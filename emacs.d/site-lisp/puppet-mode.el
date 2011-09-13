@@ -6,7 +6,7 @@
 ;;;
 ;;; Description: A simple mode for editing puppet manifests
 
-(defconst puppet-mode-version "0.2")
+(defconst puppet-mode-version "0.3")
 
 (defvar puppet-mode-abbrev-table nil
   "Abbrev table in use in puppet-mode buffers.")
@@ -288,6 +288,7 @@ of the initial include plus puppet-include-indent."
              "filebucket"
              "generate"
              "if"
+	     "elsif"
              "import"
              "include"
              "info"

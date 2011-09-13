@@ -1,4 +1,6 @@
 (setq notmuch-saved-searches '(
+			       ("QA Migration" . "tag:QA")
+			       ("Anderson" . "tag:anderson")
                                ("inbox" . "tag:inbox and tag:unread")
                                ("TODO" . "tag:TODO or tag:todo")
                                ("versionmerge" . "tag:versionmerge")
