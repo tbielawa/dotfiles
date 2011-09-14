@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Did you enter a number, or do you need help?
+
+if [ "$(( ${1} + 1 ))" -ne "1" ]; then
+    echo "Removing line ${1} from your ~/.ssh/known_hosts file"
+else
+    echo "Example: to delete line 99 from ~/.ssh/known_hosts"
+    echo "Run as so:"
+    echo "${0} delline 99"
+    exit 0
+fi
+    
+TMP=`mktemp`
+REAL=~/.ssh/known_hosts
+NOLINES=`wc -l < ${REAL}`
+
+if [ ${1} -gt ${NOLINES} ]; then
+    echo "Invalid line number, must be <= ${NOLINES}"
+    exit 1
+elif [ "${1}" -le "0" ]; then
+    echo "Invalid line number, must be >= 1"
+    exit 1
+fi
+
+awk "
+NR != ${1} {
+   print \$0
+}" ${REAL} > ${TMP}
+
+echo "Backing up original ${REAL} file to ${REAL}.orig"
+cp ${REAL} "${REAL}.orig" && cat ${TMP} > ${REAL} || echo "Failed writing your new ${REAL} file" && exit 1
+
+echo "Wrote new ${REAL} file successfully"
+
+exit 0

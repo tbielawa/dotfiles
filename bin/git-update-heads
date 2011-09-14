@@ -1,0 +1,32 @@
+#!/bin/bash
+
+function has-branch {
+    branch=$1
+    git branch --no-color | grep -q " ${branch}$"
+}
+
+thisbranch() {
+    git branch --no-color | sed -r -n "s/(\* )(.*)/\2/p"
+}
+
+greset() {
+    git reset --hard origin/${1}
+}
+
+resethead() {
+    if has-branch "${1}"; then
+	git checkout "${1}"
+	git fetch
+	greset "${1}"
+    fi
+}
+
+ONBRANCH=`thisbranch`
+resethead $ONBRANCH
+resethead dev3
+resethead dev
+resethead qa0
+resethead qa
+resethead stage
+resethead master
+git checkout $ONBRANCH

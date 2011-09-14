@@ -1,0 +1,31 @@
+#!/bin/bash
+
+NETHOME=~/file/
+MOUNTHOST=HOSTNAME
+
+echo "Nethome: processing ${MOUNTHOST}:${NETHOME}"
+
+is_mounted() {
+    mount | grep -q ${1}
+    echo $?
+}
+
+mount_nethome() {
+    sshfs $USER@${MOUNTHOST}: ${NETHOME}
+}
+
+unmount_nethome() {
+    fusermount -u ${NETHOME}
+}
+
+case `is_mounted ${MOUNTHOST}` in
+    0)
+	# It's already mounted. Unmount it now.
+	unmount_nethome
+	echo "Unmounted nethome"
+	;;
+    *)
+	# Not mounted, mount it.
+	mount_nethome
+	echo "Mounted nethome"
+esac
