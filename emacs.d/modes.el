@@ -3,10 +3,17 @@
 ;;; Add my emacs dir to the load path?
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 (add-to-list 'load-path "~/.emacs.d/color-themes/")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/rhtml/")
 
 ;;; XML Editing Mode (Mostly DocBook)
 (setq auto-mode-alist
       (cons '("\\.\\(XML\\|xml\\|xsl\\|rng\\|xhtml\\)\\'" . nxml-mode)
+            auto-mode-alist))
+
+;;; Actual LDAP Mode - For things like editing LDIFs or schemas
+(require 'rhtml-mode)
+(setq auto-mode-alist
+      (cons '("\\.\\(erb\\|rhtml\\)\\'" . rhtml-mode)
             auto-mode-alist))
 
 ;;; Actual LDAP Mode - For things like editing LDIFs or schemas
@@ -47,7 +54,7 @@
         (add-hook 'message-setup-hook 'mml-secure-sign-pgpmime)
         ;; Remedy tag hooks
         (require 'remedy-tag-mode)
-        (global-set-key (kbd "<f8>") 'email))))
+        (global-set-key (kbd "<f8>") 'toggle-mail-buffers))))
 
 ;;; Puppet mode for editing manifests
 (autoload 'puppet-mode "puppet-mode" "Major mode for editing puppet manifests")
@@ -79,3 +86,10 @@
              (turn-on-auto-fill)
              (require 'asciidoc)))
 
+;; Autocomplete mode has no idea what puppet mode is. Remedy that:
+(add-to-list 'ac-modes 'puppet-mode)
+
+;; bbdb->personal dictionary, also enable for mail mode
+(require 'bbdb-spell)
+(dolist (hook '(message-mode-hook))
+  (add-hook hook (lambda () (flyspell-mode 1))))

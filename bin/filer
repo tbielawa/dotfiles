@@ -1,9 +1,9 @@
 #!/bin/bash
+. ~/bin/mountvars
+NETHOME=$FILERMOUNT
+MOUNTHOST=$FILERSRC
 
-NETHOME=~/file/
-MOUNTHOST=HOSTNAME
-
-echo "Nethome: processing ${MOUNTHOST}:${NETHOME}"
+echo "Nethome: processing ${MOUNTHOST} on ${NETHOME}"
 
 is_mounted() {
     mount | grep -q ${1}

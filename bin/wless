@@ -1,0 +1,56 @@
+#!/bin/bash
+
+#
+# This script will download and follow the named file (presumed to be
+# a log file), and present the file in less.
+#
+# Author: Jim Scarborough
+# Date: 2010-10-25
+#
+
+if [ $# != 1 ] ; then
+   echo "Fetch the given URL and present it in less, allowing following.">&2
+   echo >&2
+   echo "USAGE:" >&2
+   echo "  wless URL" >&2
+   echo >&2
+   exit
+fi
+
+f=/tmp/`basename $1``date +%s`
+
+if [ -w $f ]; then
+   rm -i $f;
+fi;
+
+touch $f
+
+function fetchForever() {
+   while echo -n; do
+       sleep 5;
+       wget -c -q -O $f $1 2>&1;
+   done;
+}
+
+
+function jobidfromstring()
+{
+        local STRING;
+        local RET;
+
+        STRING=$1;
+        RET="$(echo $STRING | sed 's/^[^0-9]*//' | sed 's/[^0-9].*$//')"
+
+        echo $RET;
+}
+
+wget -c -q -O $f $1
+
+{ coproc fetch { fetchForever $1; } 1>&3 2>&3 ; } 3>&1
+
+less $f
+
+disown $fetch_PID
+kill $fetch_PID
+
+rm $f

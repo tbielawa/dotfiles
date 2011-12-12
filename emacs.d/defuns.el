@@ -5,7 +5,7 @@
   (interactive "sxml-id:\nsTitle:")
   (save-excursion
     (let
-	((nl))
+        ((nl))
       (setq nl "
 ")
       (insert "<section xml:id=\"" xml-id "\">" nl nl "  <title>" title "</title>" nl nl "<para>" nl nl "</para>" nl nl "</section>" nl nl ))))
@@ -17,6 +17,10 @@
   (interactive)
   (other-window -1))
 (global-set-key "\C-x\p" 'previous-window)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Run the spellchecker
+(global-set-key "\C-c\C-f" 'flyspell-buffer)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Delete all that nasty whitespace that doesn't belong.
@@ -67,7 +71,7 @@
   (let
       ((imap-buffer (get-buffer "*OfflineIMAP*")))
     (if (null imap-buffer)
-	nil
+        nil
       t)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -78,8 +82,11 @@
   (load-file "~/.emacs.d/notmuch-config.el")
   (if (null (offlineimap-runningp))
       (offlineimap))
-  (notmuch)
-  (color-theme-twilight))
+  (if (null (get-buffer "*notmuch-hello*"))
+      (progn
+        (color-theme-twilight)
+        (notmuch)
+        t)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Add a new task to the docs
@@ -93,20 +100,51 @@
 (defun toggle-mail-buffers ()
   "Toggle back and forth between notmuch and offlineimap"
   (interactive)
-  (let ((cb (buffer-name))
-	(nm "*notmuch-hello*")
-	(oi "*OfflineIMAP*"))
-    (if (eq cb nm)
-	(progn
-	  (message "Switching to %s from %s" oi cb)
-	  (switch-to-buffer oi)))
-    (if (eq cb oi)
-	(progn
-	  (message "Switching to %s from %s" oi cb)
-	  (switch-to-buffer nm)))))
+  (unless (email)
+    (let ((cb (buffer-name))
+          (nm "*notmuch-hello*")
+          (oi "*OfflineIMAP*"))
+      (message "Current buffer: %s" cb)
+      (if (string= cb nm) ;; if current buffer is notmuch, switch to offlineimap
+          (progn
+            (message "If! (cb is nm)")
+            (message "Switching to %s from %s" oi cb)
+            (switch-to-buffer oi)
+	    (goto-char (point-max)))
+        ;; else (curbuf is offlineimap, switch to notmuch
+        (progn
+          (message "Else! (cb is not nm)")
+          (message "Switching to %s from %s" nm cb)
+          (switch-to-buffer nm)
+	  (notmuch-hello-update)
+          )))))
 
-;; (global-set-key "\M-O" 'toggle-mail-buffers)
+  ;; (global-set-key "\M-O" 'toggle-mail-buffers)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Your amazing function here!
+;; Quick puppet selector. Don't give dollar signs in the first prompt
+(defun puppet-insert-selector (var default-value)
+  "Insert a puppet selector statement with the given default."
+  (interactive "sVariable name:\nsDefault value:")
+  (save-excursion
+    (indent-relative-maybe)
+    (let
+        ((varname (concat "$" var)))
+      (insert varname " = " varname " ? {\n")
+      (puppet-indent-line)
+      ;; (indent-relative-maybe)
+      (insert "''      => " default-value ",\n")
+      (puppet-indent-line)
+      ;; (indent-relative-maybe)
+      (insert "default => " varname ",\n")
+      (puppet-indent-line)
+      ;;(indent-relative-maybe)
+      (insert "}")
+      (puppet-indent-line)
+      (end-of-line)
+      (insert "\n"))))
 
+;; de-wordwrap everything
+(defun unfill-region ()
+  (interactive)
+  (let ((fill-column (point-max)))
+    (fill-region (region-beginning) (region-end) nil)))

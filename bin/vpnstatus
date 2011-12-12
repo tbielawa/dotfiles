@@ -1,0 +1,9 @@
+#!/bin/bash
+psaux=`mktemp`
+ps aux > $psaux;
+
+if egrep -q 'openvpn' $psaux; then
+    echo -n "(VPN) "
+fi
+
+rm -f ${psaux}

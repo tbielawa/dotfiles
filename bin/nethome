@@ -1,9 +1,10 @@
 #!/bin/bash
 
-NETHOME=~/nethome/
-MOUNTHOST=HOSTNAME
+. ~/bin/mountvars
+NETHOME=$PEOPLEMOUNT
+MOUNTHOST=$PEOPLESRC
 
-echo "Nethome: processing ${MOUNTHOST}:${NETHOME}"
+echo "Nethome: processing ${MOUNTHOST} on ${NETHOME}"
 
 is_mounted() {
     mount | grep -q ${1}

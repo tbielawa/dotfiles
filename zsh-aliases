@@ -20,6 +20,7 @@ alias sup='svn up'
 alias sst='svn st'
 
 # Misc.
+alias foxkill='pkill -9 firefox'
 alias k='kinit -f'
 alias ssu='sudo su -'
 alias keys='ssh-add -l'
@@ -28,6 +29,8 @@ alias dserver='./manage.py runserver 0.0.0.0:8000'
 alias lsearch='ldapsearch -xLLL'
 alias gotemp='pushd `mktemp -d`'
 alias cleanup='find . -name "*~" -delete'
+alias gk='gitk --all'
+alias pbcp='xsel -b'
 
 # Command line prettyness/etc
 alias grep='grep --color=auto'
@@ -36,3 +39,6 @@ alias ltr='ls -ltr'
 
 # Admin maint.
 alias pfstat='sudo su -c "service postfix status"'
+
+# Math is hard
+alias count="awk 'BEGIN{i=0}{i = i + \$1}END{print i}'"

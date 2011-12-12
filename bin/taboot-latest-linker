@@ -1,0 +1,16 @@
+#!/bin/bash
+
+LATEST=`ls releases/ | head -1`
+echo "Creating symlinks for ${LATEST} release"
+
+# Link latest docs folder
+pushd docs
+ln -s $LATEST taboot-latest
+# Link latest docs archive
+ln -s $LATEST.tar.gz taboot-latest.tar.gz
+popd
+
+# Link latest release dir
+pushd releases
+ln -s $LATEST taboot-latest
+

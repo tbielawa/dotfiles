@@ -1,17 +1,18 @@
 # -*- mode: conf -*-
+# Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
+# suit to get started fast.
 
-# Basic configuration suitable for running offlineimap in the
-# background.
-
-# Calls a shell script, 'email-tagger', after running which uses
-# 'notmuch' to handle indexing over the new mail.
 [general]
 accounts = RedHat
 ui = Noninteractive.Basic
 
+########################################################################
+# Red Hat Zimbra Mail
+
 [Account RedHat]
 localrepository = Local
 remoterepository = Remote
+autorefresh = 5
 postsynchook = email-tagger
 
 [Repository Local]
@@ -23,7 +24,8 @@ sep = /
 type = IMAP
 ssl = yes
 remoteport = 993
-remotepassfile = ~/.redhat-email.pass
-remotehost = $MAILSERVER$
+remotepassfile = ~/FILENAMEHERE
+remotehost = calendar.corp.redhat.com
 remoteuser = tbielawa
 subscribedonly = no
+maxconnections = 3
