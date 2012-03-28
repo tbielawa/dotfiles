@@ -1,7 +1,22 @@
 #!/bin/bash
 
+count_unread_emails() {
+    notmuch search tag:unread | wc -l
+}
+
+alert() {
+    # 1 = Notification title
+    # 2 = Notification body
+    notify-send -i ~/Pictures/mail-fetched.jpg "${1}" "${2}"
+}
+
 # Whats new with you?
 notmuch new
+
+unread_mail=`count_unread_emails`
+if [ "${unread_mail}" -gt "0" ]; then
+    alert "Mail fetched..." "Unread email(s): ${unread_mail}"
+fi
 
 # Other automated mailings
 notmuch tag -inbox -unread +pkgs-signed from:"keymaster"
@@ -21,14 +36,21 @@ notmuch tag -inbox +anderson from:"ansilva"
 notmuch tag -inbox +fedora-test to:"test-announce@lists.fedoraproject.org"
 notmuch tag -inbox +func-list to:"func-list"
 notmuch tag -inbox +it-eng-list to:"it-eng-list"
+notmuch tag -inbox +rh-ea-list subject:"rh-ea-list"
 notmuch tag -inbox +it-all to:"it-all"
 notmuch tag -inbox +it-pc-list to:"it-pc-list" and not tag:"nagios" and not tag:"gomez" and not tag:"cron-fail"
 notmuch tag -inbox +helpdesk from:"Helpdesk"
+notmuch tag -inbox -unread +csee subject:"csee.wvu.edu"
+notmuch tag -inbox -unread +csee-internal from:"lcsee-internal@mail.wvu.edu"
+notmuch tag -inbox -unread +csee-sf from:"lcsee-specialforces@mail.wvu.edu"
+notmuch tag -inbox -unread +csee-ops from:"lcsee-operations@mail.wvu.edu"
+notmuch tag -inbox -unread +csee-internal from:"lcsee-internal@mail.wvu.edu"
 
 # Company Notices/Discussions/Alerts
 notmuch tag -inbox +memo-list to:"memo-list"
 notmuch tag -inbox +announce-list to:"announce-list"
 notmuch tag -inbox +outages to:"outage-list"
+notmuch tag -inbox +outages subject:"sfdc-outage"
 notmuch tag -inbox +facilities from:"facilities"
 
 # Misc. jibber jabber

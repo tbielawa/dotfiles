@@ -91,5 +91,6 @@
 
 ;; bbdb->personal dictionary, also enable for mail mode
 (require 'bbdb-spell)
+(require 'flyspell)
 (dolist (hook '(message-mode-hook))
   (add-hook hook (lambda () (flyspell-mode 1))))

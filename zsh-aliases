@@ -31,6 +31,7 @@ alias gotemp='pushd `mktemp -d`'
 alias cleanup='find . -name "*~" -delete'
 alias gk='gitk --all'
 alias pbcp='xsel -b'
+alias tclean='pushd ~/rhat/Taboot/; make clean; popd'
 
 # Command line prettyness/etc
 alias grep='grep --color=auto'

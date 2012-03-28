@@ -4,6 +4,11 @@ require 'erb'
 require 'rubygems'
 require 'net/ldap'
 
+# This requires the following packages:
+# - ruby
+# - rubygems
+# - rubygem-ruby-net-ldap
+
 template = ERB.new <<-EOS
 ;; -*-coding: utf-8-emacs;-*-
 ;;; file-version: 6

@@ -10,6 +10,7 @@
 			       ("FedoraDevel" . "tag:fedora-devel and tag:unread")
 			       ("FuncList" . "tag:func-list and tag:unread")
 			       ("RDUList" . "tag:rdu-list and tag:unread")
+			       ("rh-ea-list" . "tag:rh-ea-list and tag:unread")
                                ("unread" . "tag:unread")
                                ))
 

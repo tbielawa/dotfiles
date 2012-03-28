@@ -1,6 +1,7 @@
 ;; -*- mode: emacs-lisp -*-
 (load-file "~/.emacs.d/modes.el")
 (load-file "~/.emacs.d/defuns.el")
+(load-file "~/.emacs.d/advice.el")
 
 (column-number-mode)
 (custom-set-variables
@@ -14,6 +15,7 @@
  '(display-time-24hr-format t)
  '(display-time-day-and-date nil)
  '(display-time-mode t)
+ '(graphviz-dot-indent-width 4)
  '(inhibit-startup-buffer-menu t)
  '(inhibit-startup-echo-area-message "tbielawa")
  '(inhibit-startup-screen t)

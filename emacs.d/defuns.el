@@ -20,7 +20,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Run the spellchecker
-(global-set-key "\C-c\C-f" 'flyspell-buffer)
+(global-set-key "\C-cf" 'flyspell-buffer)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Delete all that nasty whitespace that doesn't belong.
@@ -89,13 +89,6 @@
         t)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Add a new task to the docs
-(defun taboot-new-task (task-name)
-  (interactive "sTask Name:")
-  (insert-file "task")
-  (replace-string "*name*" task-name))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Your amazing function here!
 (defun toggle-mail-buffers ()
   "Toggle back and forth between notmuch and offlineimap"
@@ -119,8 +112,6 @@
 	  (notmuch-hello-update)
           )))))
 
-  ;; (global-set-key "\M-O" 'toggle-mail-buffers)
-
 ;; Quick puppet selector. Don't give dollar signs in the first prompt
 (defun puppet-insert-selector (var default-value)
   "Insert a puppet selector statement with the given default."
@@ -143,8 +134,25 @@
       (end-of-line)
       (insert "\n"))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; de-wordwrap everything
 (defun unfill-region ()
   (interactive)
   (let ((fill-column (point-max)))
     (fill-region (region-beginning) (region-end) nil)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Move up/down a line and re-center the page
+(defun move-and-recenter (n)
+  (next-line n)
+  (recenter))
+
+(defun move-up-and-recenter ()
+  (interactive)
+  (move-and-recenter -1))
+(global-set-key "\M-p" 'move-up-and-recenter)
+
+(defun move-down-and-recenter ()
+  (interactive)
+  (move-and-recenter 1))
+(global-set-key "\M-n" 'move-down-and-recenter)
