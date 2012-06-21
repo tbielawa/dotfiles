@@ -15,7 +15,7 @@ mount_nethome() {
 }
 
 unmount_nethome() {
-    fusermount -u ${NETHOME}
+    fusermount -uz ${NETHOME}
 }
 
 case `is_mounted ${MOUNTHOST}` in

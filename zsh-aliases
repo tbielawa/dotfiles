@@ -43,3 +43,8 @@ alias pfstat='sudo su -c "service postfix status"'
 
 # Math is hard
 alias count="awk 'BEGIN{i=0}{i = i + \$1}END{print i}'"
+
+# ipythonamajigger
+alias ipy='ipython'
+
+alias canto='canto -u'
