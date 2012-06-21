@@ -44,7 +44,7 @@
 ;;; Lets generalize for a moment. Keep host specific stuff out of the way
 (let
     ((hostname (getenv "HOSTNAME")))
-  (if (string-equal hostname "deepfryer")
+  (if (string-equal hostname "deepfryer.rdu.redhat.com")
       (progn
         ;;; Lets get our email syncing in the background while running 'email'
         (require 'offlineimap)
