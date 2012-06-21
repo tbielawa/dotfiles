@@ -4,7 +4,9 @@
 
 [general]
 accounts = RedHat
-ui = Noninteractive.Basic
+#ui = Noninteractive.Basic
+ui = Basic
+#ui = MachineUI
 
 ########################################################################
 # Red Hat Zimbra Mail
@@ -12,7 +14,7 @@ ui = Noninteractive.Basic
 [Account RedHat]
 localrepository = Local
 remoterepository = Remote
-autorefresh = 5
+autorefresh = 2
 postsynchook = email-tagger
 
 [Repository Local]
@@ -24,8 +26,8 @@ sep = /
 type = IMAP
 ssl = yes
 remoteport = 993
-remotepassfile = ~/FILENAMEHERE
-remotehost = calendar.corp.redhat.com
+remotepassfile = FILENAMEHERE
+remotehost = EMAILHOST
 remoteuser = tbielawa
 subscribedonly = no
 maxconnections = 3
