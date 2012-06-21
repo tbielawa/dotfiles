@@ -1,37 +1,73 @@
 #!/bin/bash
 
+count_unread_emails() {
+    notmuch search tag:unread | wc -l
+}
+
+alert() {
+    # 1 = Notification title
+    # 2 = Notification body
+    notify-send -i ~/Pictures/mail-fetched.jpg "${1}" "${2}"
+}
+
 # Whats new with you?
 notmuch new
- 
-# The IT Crowd
-notmuch tag -inbox +it-eng-list to:"it-eng-list"
-notmuch tag -inbox +it-all to:"it-all"
-notmuch tag -inbox +it-pc-list to:"it-pc-list"
-notmuch tag -inbox +helpdesk from:"Helpdesk"
+
+unread_mail=`count_unread_emails`
+if [ "${unread_mail}" -gt "0" ]; then
+    alert "Mail fetched..." "Unread email(s): ${unread_mail}"
+fi
+
+# Other automated mailings
+notmuch tag -inbox +pkgs-signed from:"keymaster"
+notmuch tag -inbox +gomez from:"alerts@gomez.com"
+notmuch tag -inbox +cron-fail from:"Cron"
+notmuch tag -inbox -unread from:"root@loki01.re.redhat.com"
+notmuch tag -inbox -unread +RHNSatelliteErrate subject:"RHN Satellite Errata Alert"
+notmuch tag -inbox +ansible subject:"ansible"
 
 # Monitoring
 notmuch tag -inbox +nagios +nagios-PROD from:"nagios" and subject:".prod."
 notmuch tag -inbox +nagios +nagos-STAGE from:"nagios" and subject:".stage."
 notmuch tag -inbox +nagios +nagios-QA   from:"nagios" and subject:".qa."
-notmuch tag -inbox +nagios +nagios-ETC  from:"nagios" and not tag:nagios
+notmuch tag -inbox +nagios +nagios-ETC  from:"nagios" and not tag:"nagios"
 
-# Other automated mailings
-notmuch tag -inbox -unread +pkgs-signed from:"keymaster"
-notmuch tag -inbox +gomez from:"alerts@gomez.com"
-notmuch tag -inbox -unread +cron-fail from:"Cron"
-notmuch tag -unread subject:"F-15 Branched report"
+# The IT Crowd
+#notmuch tag -inbox +anderson from:"ansilva"
+notmuch tag -inbox +fedora-test to:"test-announce@lists.fedoraproject.org"
+notmuch tag -inbox +func-list to:"func-list"
+notmuch tag -inbox +it-eng-list to:"it-eng-list"
+notmuch tag -inbox +rh-ea-list subject:"rh-ea-list"
+notmuch tag -inbox +it-all to:"it-all"
+notmuch tag -inbox +it-pc-list to:"it-pc-list" and not tag:"nagios" and not tag:"gomez" and not tag:"cron-fail"
+notmuch tag -inbox +helpdesk from:"Helpdesk"
+notmuch tag -inbox -unread +csee subject:"csee.wvu.edu"
+notmuch tag -inbox -unread +csee-internal from:"lcsee-internal@mail.wvu.edu"
+notmuch tag -inbox -unread +csee-sf from:"lcsee-specialforces@mail.wvu.edu"
+notmuch tag -inbox -unread +csee-ops from:"lcsee-operations@mail.wvu.edu"
+notmuch tag -inbox -unread +csee-internal from:"lcsee-internal@mail.wvu.edu"
 
 # Company Notices/Discussions/Alerts
 notmuch tag -inbox +memo-list to:"memo-list"
-notmuch tag -inbox +announce-list from:"announce-list"
+notmuch tag -inbox +announce-list to:"announce-list"
 notmuch tag -inbox +outages to:"outage-list"
+notmuch tag -inbox +outages subject:"sfdc-outage"
 notmuch tag -inbox +facilities from:"facilities"
 
 # Misc. jibber jabber
-notmuch tag -inbox +friday-list to:"friday-list"
+notmuch tag -inbox +notmuch to:"notmuch@notmuchmail.org"
+notmuch tag -inbox +rh-brewing to:"rh-brewing"
+notmuch tag -inbox -unread +friday-list to:"friday-list"
+notmuch tag -inbox +it-puppet-list to:"it-puppet-list"
 notmuch tag -inbox +rdu-list to:"rdu-list"
 notmuch tag -inbox +android to:"android-users"
-notmuch tag -inbox +me from:"tbielawa"
+notmuch tag +me +sent from:"tbielawa"
+notmuch tag -inbox +fedorahosted from:"trac@fedorahosted.org"
+notmuch tag -inbox +taboot subject:"[taboot]" or subject:"[taboot-devel]"
+notmuch tag -inbox +taboot subject:taboot
+notmuch tag -inbox -unread +itops-status subject:"[it-ops-all] Weekly Status Report"
+notmuch tag -inbox -unread +it-ops-general subject:"it-ops"
+notmuch tab -unbox +close-account subject:"[redhat.com NA:" and 'Please close all accounts for'
 
 # Now run one last post-sync hook:
 nagios-alerts
