@@ -30,14 +30,15 @@ end
 load 'vars.rb'
 ldap = Net::LDAP.new
 ldap.host = Vars::CORPLDAP
+ldap.auth {:method => :anonymous}
 filter = Net::LDAP::Filter.eq 'mail', '*@redhat.com'
 
-res = ldap.search :base => 'ou=users,dc=redhat,dc=com', 
+res = ldap.search :base => 'ou=users,dc=redhat,dc=com',
             :filter => filter
 
 today = Date.today.to_s
 results = []
-res.each do |r| 
+res.each do |r|
   results << Result.new(r)
 end
 

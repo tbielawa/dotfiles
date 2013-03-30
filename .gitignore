@@ -1,3 +1,6 @@
 *.dat
 *~
 \#*
+emacs.d/elpa/*
+emacs.d/url/cache/*
+emacs.d/request/curl-cookie-jar

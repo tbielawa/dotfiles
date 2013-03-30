@@ -1,21 +1,27 @@
 # -*- mode: shell-script -*-
 ########################################################################
 # Imports
-for f in functions aliases vars keybindings; do
+for f in functions aliases vars keybindings completion ansible rh-aliases; do
     source ~/.zsh-${f}
 done
 
 fpath=(~/.zsh-etc $fpath)
+
+LIBGL_DEBUG=verbose
+
+########################################################################
+# Extra library paths
+export PYTHONPATH="${HOME}/lib/python/"
 
 ########################################################################
 # Color Config
 autoload -U colors && colors
 
 for COLOR in RED GREEN YELLOW WHITE BLACK CYAN BLUE PURPLE; do
-    eval PR_$COLOR='%{$fg[${(L)COLOR}]%}'         
+    eval PR_$COLOR='%{$fg[${(L)COLOR}]%}'
     eval PR_BRIGHT_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
-done                                                 
-PR_RESET="%{${reset_color}%}";                       
+done
+PR_RESET="%{${reset_color}%}";
 
 ########################################################################
 # VCS Info Config
@@ -33,15 +39,15 @@ zstyle ':vcs_info:*:prompt:*' branchformat  "%b:%r"              ""
 ########################################################################
 # Actual Prompt Configuration
 # Produces an effect like:
-#     <tbielawa>@(deepfryer)[~/rhat/puppet-mods/datasources] 12:01:19  (master+) 
-#     $ 
+#     <tbielawa>@(deepfryer)[~/rhat/puppet-mods/datasources] 12:01:19  (master+)
+#     $
 
 # Need this to enable vcs_info_msg in the PROMPT
 precmd(){
     vcs_info 'prompt'
 }
 
-PROMPT='<%B%F{blue}%n%f%b>@(%F{green}%m%f)[%~] %* ${vcs_info_msg_0_} 
+PROMPT='[%~] %* ${vcs_info_msg_0_}
 %(!.#.$) '
 
 ########################################################################

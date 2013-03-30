@@ -156,3 +156,35 @@
   (interactive)
   (move-and-recenter 1))
 (global-set-key "\M-n" 'move-down-and-recenter)
+
+
+(add-hook 'before-save-hook 'delete-trailing-whitespace-except-current-line)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Post the current buffers contents to the redhat pastebin
+(defun rhpaste()
+  (interactive)
+  (shell-command (concat "/home/tbielawa/bin/pastebin - < " buffer-file-name " | /usr/bin/xsel -i -b")))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Don't care where you are, kill this whole line
+(global-set-key "\C-xK" 'kill-whole-line)
+
+
+;; insert a couple of paragraphs of lorem ipsum
+(defun lorem-ipsum-paragrah(number-of-paragraphs)
+  "Insert a couple of lorem ipsum paragraphs"
+  (interactive "Number of Paragraphs:")
+  (setq Lorem-ipsum-sentence-separator " "
+	Lorem-ipsum-paragraph-separator ""
+        li-par-begin "<p>"
+        li-par-end "</p>\n\n")
+  (let (value)
+    (dotimes
+        (num number-of-paragraphs value)
+      (progn
+        (indent-according-to-mode)
+        (insert li-par-begin)
+	(Lorem-ipsum-insert-paragraphs))
+        (insert li-par-end))))

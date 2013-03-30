@@ -18,9 +18,14 @@ alias yi='yum info'
 # Version control - PROTIP: git-aliases (1)
 alias sup='svn up'
 alias sst='svn st'
+alias call='git commit -am'
+alias co='git checkout'
+alias tigga='tig --all'
 
 # Misc.
+alias puppet-lint='puppet-lint --no-documentation-check --no-80chars-check'
 alias foxkill='pkill -9 firefox'
+alias oikill='pkill -9 offlineimap'
 alias k='kinit -f'
 alias ssu='sudo su -'
 alias keys='ssh-add -l'
@@ -32,6 +37,9 @@ alias cleanup='find . -name "*~" -delete'
 alias gk='gitk --all'
 alias pbcp='xsel -b'
 alias tclean='pushd ~/rhat/Taboot/; make clean; popd'
+alias hack='. ./hacking/setup-env'
+alias weechat='TERM=screen-256color weechat-curses'
+alias rscreen='screen -c .screenrc-rh'
 
 # Command line prettyness/etc
 alias grep='grep --color=auto'
@@ -44,7 +52,12 @@ alias pfstat='sudo su -c "service postfix status"'
 # Math is hard
 alias count="awk 'BEGIN{i=0}{i = i + \$1}END{print i}'"
 
+# UPCASE
+alias upcase="tr '[:lower:]' '[:upper:]'"
+
 # ipythonamajigger
 alias ipy='ipython'
 
-alias canto='canto -u'
+# release stuff
+alias diff2namestr='grep -E "^\+r" | sed -r -e "s|(\+)([^: ]+)(: )(.*)|\2-\4|"'
+alias vdg='acroread ./output/Virtual-Disk-Operations.pdf'

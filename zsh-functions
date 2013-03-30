@@ -6,3 +6,45 @@ function yins() {
 function cdmkdir() {
     mkdir -p ${1} && cd ${1}
 }
+
+function gitcorpclone() {
+    if [ -d ${1} ]; then
+	if [ ! "`ls -1 ${1} | wc -l`" == "0" ]; then
+	    echo "Error: Directory '${1}' already exists and is not empty."
+	    return 1
+	else
+	    echo "Directory '${1}' exists (empty), cloning into it."
+	fi
+    fi
+
+    for proto in ssh git; do
+	echo "Cloning ${1} using ${proto} protocol."
+	git clone --quiet ${proto}://git.corp.redhat.com/srv/git/puppet-cfg/modules/${1} ${1} &>/dev/null && break
+
+	# Uhoh, didn't exit. Repo failed to clone. Try the next proto.
+	echo "Failed to clone using protocol '${proto}'."
+	rm -fR ${1}
+    done
+}
+
+function git-rpm-diff() {
+    # Diff the data/rpm-versions.yaml file of the current HEAD against
+    # it's upstream counterpart
+    git diff origin/`git branch | awk '/^*/ {print $2}'` -- data/rpm-versions.yaml
+}
+
+
+function trimws() {
+    # Remove all the dirty nasty dangling whitespace
+    sed -i -r "s/(\s+)$//" `find . -type f | grep -v git | xargs`
+}
+
+function trimwsfiles() {
+    # Remove all the dirty nasty dangling whitespace
+    sed -i -r "s/(\s+)$//" ${@}
+}
+
+
+function delline() {
+    sed -i "${1}d" .ssh/known_hosts
+}

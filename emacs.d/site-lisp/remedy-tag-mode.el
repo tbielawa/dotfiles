@@ -1,7 +1,7 @@
 ;;; remedy-tag-mode.el -- Minor mode for opening remedy tags
 ;;
-;; Description: 
-;; 
+;; Description:
+;;
 ;;   Dealing with Remedy is suck. Remedy not including actual
 ;;   hyperlinks to tickets in its own outgoing email is just
 ;;   wrong. `remedy-tag-mode` tries to make your life better by making
@@ -51,13 +51,13 @@
 	    ((remedy-base-url "http://www.re.redhat.com/")
 	     (remedy-complete-url (concatenate 'string remedy-base-url this-word)))
 	  (print (concatenate 'string "Opening TAG in Firefox: " this-word))
-	  (start-process-shell-command "firefox" "*remedy-ticket*" "firefox" remedy-complete-url))
+	  (start-process-shell-command "/usr/bin/google-chrome" "*remedy-ticket*" "firefox" remedy-complete-url))
       (print "Word at point is not valid Remedy tag syntax."))))
 
 (global-set-key (kbd "C-h C-r") 'remedy-tag-launch-in-browser)
 
 (defun remedy-tagp(remedy-tag)
-  "One day this will be a beautiful function able to tell if the 
+  "One day this will be a beautiful function able to tell if the
 word-at-point is a legit Remedy tag. Until then, don't do anything
 stoopid because it always returns true.
 

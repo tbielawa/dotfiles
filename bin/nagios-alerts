@@ -1,9 +1,17 @@
+# -*- mode: shell-script -*-
 
 # http://file.rdu.redhat.com/~tbielawa/flames-icon.png
 alert() {
     # 1 = Notification title
     # 2 = Notification body
-    notify-send -i ~/Pictures/flames-icon.png "${1}" "${2}"
+    # 3 = (optional) icon
+    if [ -z "${3}" ]; then
+	ICON=~/Projects/dotfiles/icons/flames-icon.png
+    else
+	ICON=${3}
+    fi
+    #notify-send --hint=int:transient:1 -i ${ICON} "${1}" "${2}"
+    #notify-skillet "${1}" "${2}"
 }
 
 count_nagios_problems() {
@@ -18,9 +26,12 @@ count_nagios_acks() {
     notmuch search tag:nagios and tag:unread and subject:"ACKNOWLEDGEMENT" | wc -l
 }
 
-problems=`count_nagios_problems`
 recoveries=`count_nagios_recoveries`
 acks=`count_nagios_acks`
+
+rec_acks=$(( ${recoveries} - ${acks} ))
+base_problems=`count_nagios_problems`
+problems=$(( ${base_problems} - ${rec_acks} ))
 
 if [ "${problems}" -gt "0" ]; then
     if [ "${problems}" -eq "1" ]; then
@@ -31,18 +42,17 @@ if [ "${problems}" -gt "0" ]; then
 fi
 
 if [ "${recoveries}" -gt "0" ]; then
-    if [ "${recoveries}" -eq "1" ]; then 
-	alert "Nagios Recovery" "There is 1 new recovery notification"
-    elif [ "${recoveries}" -gt "1" ]; then 
-	alert "Nagios Recoveries" "There are ${recoveries} new recovery notifications"
+    if [ "${recoveries}" -eq "1" ]; then
+	alert "Nagios Recovery" "There is 1 new recovery notification" ~/Projects/dotfiles/icons/recovery.png
+    elif [ "${recoveries}" -gt "1" ]; then
+	alert "Nagios Recoveries" "There are ${recoveries} new recovery notifications" ~/Projects/dotfiles/icons/recovery.png
     fi
 fi
 
 if [ "${acks}" -gt "0" ]; then
-    if [ "${acks}" -eq "1" ]; then 
-	alert "Nagios Acknowledgement" "There is 1 new acknowledgement notification"
-    elif [ "${acks}" -gt "1" ]; then 
-	alert "Nagios Acknowledgement" "There are ${acks} new acknowledgement notifications"
+    if [ "${acks}" -eq "1" ]; then
+	alert "Nagios Acknowledgement" "There is 1 new acknowledgement notification" ~/Projects/dotfiles/icons/ack.png
+    elif [ "${acks}" -gt "1" ]; then
+	alert "Nagios Acknowledgement" "There are ${acks} new acknowledgement notifications" ~/Projects/dotfiles/icons/ack.png
     fi
 fi
-

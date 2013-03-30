@@ -1,19 +1,43 @@
-;; -*- mode: emacs-lisp -*-
+;;; -*- mode: emacs-lisp -*-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Add my emacs dir to the load path?
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 (add-to-list 'load-path "~/.emacs.d/color-themes/")
 (add-to-list 'load-path "~/.emacs.d/site-lisp/rhtml/")
+;;(add-to-list 'load-path "~/.emacs.d/elpa/ein-20130213.2146/")
+
+;; (require 'package)
+;; (add-to-list 'package-archives
+;;              '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+;; (require 'ein)
 
 ;;; XML Editing Mode (Mostly DocBook)
 (setq auto-mode-alist
       (cons '("\\.\\(XML\\|xml\\|xsl\\|rng\\|xhtml\\)\\'" . nxml-mode)
             auto-mode-alist))
 
+;;; DocBook Snippets
+;; (setq auto-mode-alist
+;;       (cons '("\\.\\(XML\\|xml\\|xsl\\|rng\\|xhtml\\)\\'" . yas-global-mode)
+;;             auto-mode-alist))
+
 ;;; Actual LDAP Mode - For things like editing LDIFs or schemas
 (require 'rhtml-mode)
 (setq auto-mode-alist
       (cons '("\\.\\(erb\\|rhtml\\)\\'" . rhtml-mode)
+            auto-mode-alist))
+
+;;; Documentation!
+(require 'markdown-mode)
+(setq auto-mode-alist
+      (cons '("\\.\\(md\\)\\'" . markdown-mode)
+            auto-mode-alist))
+
+;;; JavaScript
+(require 'js2-mode)
+(setq auto-mode-alist
+      (cons '("\\.\\(js\\)\\'" . js2-mode)
             auto-mode-alist))
 
 ;;; Actual LDAP Mode - For things like editing LDIFs or schemas
@@ -94,3 +118,6 @@
 (require 'flyspell)
 (dolist (hook '(message-mode-hook))
   (add-hook hook (lambda () (flyspell-mode 1))))
+
+(require 'lorem-ipsum)
+(require 'coffee-mode)
